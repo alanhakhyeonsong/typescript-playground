@@ -6,10 +6,38 @@ const username = document.querySelector('#username');
 const email = document.querySelector('#email');
 const address = document.querySelector('#address');
 
+// user data
+/** @type {User} */
 let user = {};
 
+/**
+ * @typedef {object} Address
+ * @property {string} street
+ * @property {string} city
+ */
+
+/**
+ * @typedef {object} Data 
+ * @property {string} name
+ * @property {string} email
+ * @property {Address} address
+ */
+
+/**
+ * @typedef {object} User
+ * @property {Data} data
+ */
+
+/**
+ * 
+ * @returns {Promise<User>}
+ */
+function fetchUser() {
+  return axios.get(url);
+}
+
 function startApp() {
-  axios.get(url)
+  fetchUser()
     .then(function (response) {
       console.log(response);
       user = response.data;
